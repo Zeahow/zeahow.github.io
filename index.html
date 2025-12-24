@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>圣诞贺卡</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Mountains of Christmas', cursive;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        
+        .envelope {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            text-align: center;
+            color: white;
+            cursor: pointer;
+            z-index: 0;
+        }
+
+        .envelope::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://p26-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/09e1562cc60d44fb8d59a9a28fa12e6e.jpg~tplv-a9rns2rl98-24:720:720.image?rcl=2025122422211794BCA814F7F2A7186088&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1767190877&x-signature=Sl4Gvsan4kMaRk6oScubVXG6l8c%3D');
+            background-size: cover;
+            background-position: center;
+            filter: blur(10px);
+            z-index: -2;
+        }
+
+        .envelope::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            background-image: url('https://p26-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/09e1562cc60d44fb8d59a9a28fa12e6e.jpg~tplv-a9rns2rl98-24:720:720.image?rcl=2025122422211794BCA814F7F2A7186088&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1767190877&x-signature=Sl4Gvsan4kMaRk6oScubVXG6l8c%3D');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -1;
+            border-radius: 30px;
+        }
+
+        .envelope:hover {
+            transform: scale(1.05);
+        }
+
+        .envelope-content {
+            position: relative;
+            z-index: 3;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            margin-bottom: 50px;
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background-color: #9a3412;
+            transition: opacity 0.5s ease-out;
+            z-index: 2;
+            border-radius: 20px;
+        }
+
+        .envelope.opened .envelope-flap {
+            opacity: 0;
+        }
+
+        .card {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+            animation: fadeIn 1s ease-in-out;
+            display: none;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://p11-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/62bb38712d3d44d0b03c3592234bb3a3.jpg~tplv-a9rns2rl98-24:720:720.image?rcl=2025122420175594A6BF9A218F1208747F&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1767183476&x-signature=%2B7o9n9WwCqQstN6ZYK1owag395c%3D');
+            background-size: cover;
+            background-position: center;
+            filter: blur(10px);
+            z-index: -2;
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            background-image: url('https://p11-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/62bb38712d3d44d0b03c3592234bb3a3.jpg~tplv-a9rns2rl98-24:720:720.image?rcl=2025122420175594A6BF9A218F1208747F&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1767183476&x-signature=%2B7o9n9WwCqQstN6ZYK1owag395c%3D');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -1;
+            border-radius: 30px;
+        }
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+            animation: fadeIn 1s ease-in-out;
+            display: none;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+        
+        .card-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .merry-christmas {
+            font-size: clamp(2rem, 8vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: slideInFromTop 1s ease-out;
+        }
+        
+        .message {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            margin-bottom: 40px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            animation: slideInFromBottom 1s ease-out;
+        }
+        
+        .from {
+            font-size: clamp(0.8rem, 2.5vw, 1.2rem);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(255, 255, 255, 0.5);
+            animation: slideInFromBottom 1s ease-out 0.5s both;
+        }
+        
+        .snowflake {
+            position: absolute;
+            color: white;
+            font-size: 2rem;
+            top: -50px;
+            animation: fall linear forwards;
+            z-index: 3;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideInFromTop {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes slideInFromBottom {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+        
+        .btn {
+            background-color: #dc2626;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            animation: slideInFromBottom 1s ease-out 1s both;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            white-space: nowrap;
+        }
+        
+        .btn:hover {
+            background-color: #b91c1c;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .button-container {
+            position: fixed;
+            bottom: 30px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+    <audio id="bgMusic" loop>
+        <source src="https://www.xzmp3.com/down/71d8b0279d4a.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="envelope" id="envelope" onclick="openEnvelope(); return false;">
+        <div class="envelope-content">
+            <h2 class="text-4xl font-bold mb-4">圣诞快乐</h2>
+            <p class="text-xl mb-6">给我亲爱的老婆</p>
+            <button class="btn" onclick="openEnvelope()">🍎 开启祝福 ❄️</button>
+        </div>
+    </div>
+
+    <div class="card" id="card">
+        <div class="card-content">
+            <h1 class="merry-christmas">Merry Christmas</h1>
+            <p class="message">祝老婆：岁岁年年，共欢同乐，嘉庆与时新</p>
+            <p class="from">爱你的老公</p>
+        </div>
+        <div class="button-container">
+            <button class="btn" onclick="createSnowflakes()">🍎 再下一场雪吧 ❄️</button>
+        </div>
+    </div>
+
+    <script>
+        function openEnvelope() {
+            const envelope = document.getElementById('envelope');
+            const card = document.getElementById('card');
+            const music = document.getElementById('bgMusic');
+            
+            music.play();
+            
+            envelope.classList.add('opened');
+            
+            setTimeout(() => {
+                envelope.style.display = 'none';
+                card.style.display = 'flex';
+                createSnowflakes();
+            }, 500);
+        }
+
+        function createSnowflakes() {
+            const card = document.getElementById('card');
+            const snowflakeCount = 50;
+
+            for (let i = 0; i < snowflakeCount; i++) {
+                const snowflake = document.createElement('i');
+                snowflake.className = 'snowflake';
+                snowflake.innerHTML = '❄️';
+                snowflake.style.left = Math.random() * 100 + '%';
+                snowflake.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                snowflake.style.animationDelay = Math.random() * 2 + 's';
+                card.appendChild(snowflake);
+
+                snowflake.addEventListener('animationend', () => {
+                    snowflake.remove();
+                });
+            }
+        }
+    </script>
+</body>
+</html>
